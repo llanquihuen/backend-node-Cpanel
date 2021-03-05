@@ -11,8 +11,8 @@ const porthttp = 3003
 const productRoutes = require ('./api/routes/productos_routecopy.js');
 const imagesRoutes = require ('./api/routes/images_route.js');
 
-var key = fs.readFileSync('../ssl/keys/e8826_81799_dad8d8409ac17f0ce51acae71388a834.key');
-var cert = fs.readFileSync('../ssl/certs/sakuranboshodo_cl_e8826_81799_1643137875_f1b1dec7d497a4599d93d1e805694214.crt');
+var key = fs.readFileSync('../ssl/keys/long-file-name.key');
+var cert = fs.readFileSync('../ssl/certs/long-file-name.crt');
 var options = {
   key: key,
   cert: cert
