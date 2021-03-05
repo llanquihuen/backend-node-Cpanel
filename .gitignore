@@ -1,0 +1,4 @@
+node_modules
+database_env.js
+uploads/*
+!uploads/keep_this_folder_for_the_pictures
