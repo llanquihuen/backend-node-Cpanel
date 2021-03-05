@@ -1,5 +1,5 @@
 node_modules
+index.js
 database_env.js
 uploads/*
 !uploads/keep_this_folder_for_the_pictures
-index.js
