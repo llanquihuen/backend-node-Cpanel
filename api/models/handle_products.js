@@ -40,7 +40,9 @@ const handleProducto = {
                 }
                 let array1= []
                 fs.readdirSync('uploads').forEach(file => {
-                    array1.push(`uploads/${file}`)
+                    // array1.push(`uploads/${file}`)
+                    array1.push(`uploads\\${file}`)
+
                 });
                 let array2 =[]
                 try{
