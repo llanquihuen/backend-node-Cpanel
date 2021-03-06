@@ -10,6 +10,7 @@ const porthttp = 5000
 
 const productRoutes = require ('./api/routes/productos_routecopy.js');
 const imagesRoutes = require ('./api/routes/images_route.js');
+const authRoutes = require ('./api/routes/auth_route.js')
 
 // var key = fs.readFileSync('../ssl/keys/filename.key');
 // var cert = fs.readFileSync('../ssl/certs/filename.crt');
@@ -28,7 +29,7 @@ app = express()
 // });
 
 //serverhttp.listen(porthttp, ()=>{console.log("Servidor corriendo en el puerto " + porthttp)})
-app.listen(porthttp, ()=>{console.log("server on " + porthttp)})
+app.listen(porthttp, ()=>{console.log("Servidor corriendo en el puerto " + porthttp)})
 
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
@@ -36,6 +37,7 @@ app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 app.use('/products', productRoutes)
 app.use('/images', imagesRoutes)
+app.use('/auth',authRoutes)
 
 app.get('/', (req, res) => {
    res.send('Now using https on port '+port);
