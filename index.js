@@ -3,14 +3,15 @@ const express = require('express');
 const http = require('http');
 // const fs = require('fs');
 const cors = require('cors');
-const bodyParser = require ('body-parser')
+// const bodyParser = require ('body-parser')
 // const port = 3002;
 const porthttp = 5000
 
 
 const productRoutes = require ('./api/routes/productos_routecopy.js');
 const imagesRoutes = require ('./api/routes/images_route.js');
-const authRoutes = require ('./api/routes/auth_route.js')
+const authRoutes = require ('./api/routes/auth_route.js');
+const authToken = require ('./api/middle/authToken.js');
 
 // var key = fs.readFileSync('../ssl/keys/filename.key');
 // var cert = fs.readFileSync('../ssl/certs/filename.crt');
@@ -34,6 +35,7 @@ app.listen(porthttp, ()=>{console.log("Servidor corriendo en el puerto " + porth
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(authToken)
 app.use('/uploads', express.static('uploads'));
 app.use('/products', productRoutes)
 app.use('/images', imagesRoutes)
