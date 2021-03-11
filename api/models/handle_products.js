@@ -53,10 +53,19 @@ const handleProducto = {
                     difference.map((photo)=>{
                     console.log("Eliminando el archivo "+photo)
                         try{
-                        fs.unlinkSync(photo)
+                            fs.unlinkSync(photo)
                         }catch{
                         console.log("El archivo no existe")
                         };
+                        try{
+                            console.log(`Eliminando la miniatura thumb/thumbnails-${photo.substring(8)}`)
+                            fs.unlinkSync(`thumb/thumbnails-${photo.substring(8)}`)
+                        }catch{
+                        console.log("La miniatura no existe")
+                        };
+
+
+
                     })
                 }catch{
                     console.log("Nada que borrar")
@@ -85,21 +94,39 @@ const handleProducto = {
         // return res
     },
     update:(id,post,callBack)=>{
-        if(post.tag) post.tag = post.tag.toString();
-        if(post.imageLocation) post.imageLocation = post.imageLocation.toString()
-            // console.log(post.imageLocation+"------------------------------------------------------------------------------------")
+        if(post.tag) {post.tag = post.tag.toString()}
+        if(post.imageLocation) {post.imageLocation = post.imageLocation.toString()}else{post.imageLocation=" "}
 
-          let post2 = post.imageLocation.replace(/\\/g, "\\\\")
-        //   console.log(post.imageLocation+"------------------------------------------------------------------------------------")
+        console.log(post.imageLocation+"------------------------------------------------------------------------------------")
 
-        pool.query(`UPDATE ${tabla} SET 
-            ${post.name?'name="'+post.name+'"':" "}
-            ${post.price?',price="'+post.price+'"':" "}
-            ${post.stock?',stock="'+post.stock+'"':" "}
-            ${post.tag?',tag="'+post.tag+'"':" "}
-            ${post.descrip?',descrip="'+post.descrip+'"':" "}
-            ${post.descrip&&post.imageLocation? ",":" "}
-            ${post2?'imageLocation="'+post2+'"':" "} WHERE _id ='${id}'`,
+        let post2 = post.imageLocation.replace(/\\/g, "\\\\")
+        console.log(post2+"------------------------------------------------------------------------------------")
+
+        pool.query(
+            `UPDATE ${tabla} SET ${'name="'+post.name+'"'},
+            ${'price="'+post.price+'"'},
+            ${'stock="'+post.stock+'"'},
+            ${'tag="'+post.tag+'"'},
+            ${'descrip="'+post.descrip+'"'},
+            ${'imageLocation="'+post2+'"'} WHERE _id ='${id}'`,
+            // `UPDATE ${tabla} SET 
+            // ${post.name?'name="'+post.name+'"': ' '}
+            // ${post.name&&post.price? ",":" "}
+            // ${post.price?'price="'+post.price+'"':" "}
+            // ${post.price&&post.stock? ",":" "}
+            // ${post.stock?'stock="'+post.stock+'"':" "}
+            // ${post.stock&&post.tag? ",":" "}
+            // ${post.tag?'tag="'+post.tag+'"':" "}
+            // ${post.tag&&post.descrip? ",":" "}
+            // ${post.descrip?'descrip="'+post.descrip+'"':" "}
+            // ${post.descrip&&post.imageLocation? ",":" "}
+            // ${post2?'imageLocation="'+post2+'"':" "} WHERE _id ='${id}'`,
+
+
+
+            // `${post.name? `UPDATE ${tabla} SET name="${post.name}"` :""} WHERE _id = ${id}`,
+            
+            
 
             (error,results)=>{
                 console.log(JSON.stringify(results)+" handle productos update")

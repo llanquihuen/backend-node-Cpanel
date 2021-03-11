@@ -37,6 +37,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(authToken)
 app.use('/uploads', express.static('uploads'));
+app.use('/thumb', express.static('thumb'));
 app.use('/products', productRoutes)
 app.use('/images', imagesRoutes)
 app.use('/auth',authRoutes)

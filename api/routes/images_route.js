@@ -1,5 +1,6 @@
 const express =require ("express");
 const multer = require ('multer');
+const sharp = require('sharp');
 
 const handleImagen = require ('../models/handle_images.js');
 
@@ -26,7 +27,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 2024 * 2024 * 5
+    fileSize: 4024 * 4024 * 5
   },
   fileFilter: fileFilter
 });
@@ -78,7 +79,15 @@ router.get("/", async (req, res) => {
       let paths=[];
     if (req.files){
       for (const file of req.files) {
-        // console.log(file.path)
+        console.log(file)
+
+        sharp(file.path).resize(400, 400).toFile('thumb/' + 'thumbnails-' + file.filename, (err, resizeImage) => {
+          if (err) {
+               console.log(err);
+          } else {
+               console.log(resizeImage);
+          }
+        });
         paths.push(file.path)
       }
     } handleImagen.create(paths,(err,results,fields)=>{
