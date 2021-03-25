@@ -1,6 +1,6 @@
-# backend-node-Cpanel
+# backend-node-cPanel
 
-## Using Node.js App on Cpanel.
+## Using Node.js App on cPanel.
 - Connection to MySQL 
 - Uploading files.
 - Deleting files when they are deleted from the JSON.
