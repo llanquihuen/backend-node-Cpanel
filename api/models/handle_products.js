@@ -76,7 +76,7 @@ const handleProducto = {
         }else{
             pool.query(`SELECT * FROM ${tabla} WHERE _id =${id}`,
             (error,results)=>{
-                console.log(results + "get - view")
+                // console.log("get - view")
                 
                 if(error){
                     return callBack(error);

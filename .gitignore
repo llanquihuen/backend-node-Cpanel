@@ -4,3 +4,4 @@ uploads/*
 thumb/*
 !uploads/keep_this_folder_for_the_pictures
 .env
+server.zip

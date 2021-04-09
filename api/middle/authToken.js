@@ -17,7 +17,7 @@ const authToken = (req,res,next)=>{
                 }
                 if(req.method != 'GET'){
                     //accesso a mas de un rol
-                    console.log("No te pases de listo, no tienes permiso")
+                    // console.log("No te pases de listo, no tienes permiso")
                     if(decoded.role == 'un_rol'){console.log("acceso");next();}
                     else res.status(500).send({message:'No tienes los permisos suficientes,usuario no es admin',error});
                 }else{

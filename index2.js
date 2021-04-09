@@ -10,6 +10,8 @@ const porthttp = 3003
 
 const productRoutes = require ('./api/routes/productos_routecopy.js');
 const imagesRoutes = require ('./api/routes/images_route.js');
+const authRoutes = require ('./api/routes/auth_route.js');
+const authToken = require ('./api/middle/authToken.js');
 
 var key = fs.readFileSync('../ssl/keys/long-file-name.key');
 var cert = fs.readFileSync('../ssl/certs/long-file-name.crt');
@@ -38,10 +40,13 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use('/test2/uploads', express.static('uploads'));
-app.use('/test2/products', productRoutes)
-app.use('/test2/images', imagesRoutes)
+app.use(authToken)
+app.use('/test4/uploads', express.static('uploads'));
+app.use('/test4/thumb', express.static('thumb'));
+app.use('/test4/products', productRoutes)
+app.use('/test4/images', imagesRoutes)
+app.use('/test4/auth',authRoutes)
 
-app.get('/test2', (req, res) => {
+app.get('/test4', (req, res) => {
    res.send('Now using https on port '+port);
 });
