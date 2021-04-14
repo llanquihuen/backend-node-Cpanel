@@ -24,6 +24,7 @@ const handleProducto = {
                 }
         );
     },
+    //Seguir desde acá
     view:(id,callBack)=>{
         if (id===null){
             pool.query(`SELECT * FROM ${tabla}`,
