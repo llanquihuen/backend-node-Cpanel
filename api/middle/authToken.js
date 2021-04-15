@@ -1,9 +1,9 @@
   
 const jwt = require  ('jsonwebtoken');
 const authToken = (req,res,next)=>{
- 
+
     if(req.path !== '/auth/login'){
-        // console.log(req.headers)
+            // console.log(req.headers)
        
         if(req.headers.authorization && req.headers.authorization !== 'null'){
             // console.log(req.headers.authorization)
@@ -30,12 +30,18 @@ const authToken = (req,res,next)=>{
             if(req.method == 'GET'){
                 // console.log('get si')
                 next()
-            }else{
-            res.status(403).send({message:'Usted no tiene token'})
             }
+            if(req.method=='POST'){
+                // console.log(req.path)
+                if(req.path == '/clientes'){
+                    // res.status(200).send({message:'Cliente agregado'})
+                    next()
+                }
+            }
+     
         }
         
-
-    }else next();
+    }
+    else next();
 }
 module.exports = authToken
