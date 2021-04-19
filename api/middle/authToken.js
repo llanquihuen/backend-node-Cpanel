@@ -1,5 +1,6 @@
   
 const jwt = require  ('jsonwebtoken');
+const { report } = require('../routes/clientes_route');
 const authToken = (req,res,next)=>{
 
     if(req.path !== '/auth/login'){
@@ -33,7 +34,8 @@ const authToken = (req,res,next)=>{
             }
             if(req.method=='POST'){
                 // console.log(req.path)
-                if(req.path == '/clientes'){
+                if(req.path == '/clientes' || req.path == '/compras'){
+                    //Estas lineas daban error de 'ERR_HTTP_HEADERS_SENT' se puede dar solo una vez la respuesta a headers, y en authControl estaba dando otra respuesta alternativa
                     // res.status(200).send({message:'Cliente agregado'})
                     next()
                 }

@@ -10,6 +10,8 @@ const porthttp = 5000
 
 const productRoutes = require ('./api/routes/productos_routecopy.js');
 const clientesRoutes = require ('./api/routes/clientes_route.js');
+const comprasRoutes = require ('./api/routes/compras_route.js');
+
 const imagesRoutes = require ('./api/routes/images_route.js');
 const authRoutes = require ('./api/routes/auth_route.js');
 const authToken = require ('./api/middle/authToken.js');
@@ -41,6 +43,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/thumb', express.static('thumb'));
 app.use('/products', productRoutes)
 app.use('/clientes',clientesRoutes)
+app.use('/compras',comprasRoutes)
 app.use('/images', imagesRoutes)
 app.use('/auth',authRoutes)
 
