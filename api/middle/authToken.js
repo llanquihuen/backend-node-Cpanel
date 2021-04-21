@@ -29,8 +29,13 @@ const authToken = (req,res,next)=>{
             })
         }else {
             if(req.method == 'GET'){
-                // console.log('get si')
-                next()
+                // console.log('get si',req.path)
+                // console.log(req.path.includes('clientes'))
+                if(req.path.includes('clientes') || req.path.includes('compras')){
+                    res.status(401).send({message:'No tienes permisos para obtener esos datos'})
+                }else{
+                    next()
+                }
             }
             if(req.method=='POST'){
                 // console.log(req.path)

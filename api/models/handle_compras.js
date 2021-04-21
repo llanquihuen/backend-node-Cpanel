@@ -5,11 +5,12 @@ const tabla = 'compras'
 const handleProducto = {
     create:(data,callBack) =>{
         console.log(data)
-        const detalleCompra = data.detalleCompra.toString();
+        // const detalleCompra = data.detalleCompra.toString();
+
         pool.query(
             `INSERT INTO ${tabla} (detalleCompra,idCliente,direccion) VALUES(?,?,?)`,
                 [
-                    detalleCompra,
+                    data.detalleCompra,
                     data.idCliente,
                     data.direccion,
                 ],
