@@ -18,6 +18,19 @@ const handleProducto = {
                     if(error){
                         return callBack(error);
                     }
+                    
+                    let unJJ = data.detalleCompra.replace(/'/g,'"')
+                    let unJson = JSON.parse(unJJ)
+                   
+                    for (let i in unJson){
+                        pool.query(
+                            `UPDATE productos2
+                            SET productos2.stock = productos2.stock - ${unJson[i].cantidad}
+                            WHERE productos2._id = ${unJson[i]._id}`
+                        )
+                    }
+
+                    // console .log(data)
                     return callBack(null, results);
                 }
         );
