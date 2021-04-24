@@ -1,5 +1,21 @@
 const pool = require  ('../../database.js')
 const fs = require ('fs');
+var nodemailer = require('nodemailer');
+
+// var transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'llanquihuen@gmail.com',
+//     pass: 'NCKxp1180i!!'
+//   }
+// });
+
+// var mailOptions = {
+//     from: 'saku@sakuranbo.com',
+//     to: 'llanquihuen@gmail.com',
+//     subject: 'Sending Email using Node.js',
+//     text: 'That was easy!'
+//   };
 
 const tabla = 'compras'
 const handleProducto = {
@@ -19,6 +35,23 @@ const handleProducto = {
                         return callBack(error);
                     }
                     
+                    pool.query(`SELECT * FROM clientes WHERE rut='${data.idCliente}'`,
+                     (err,res)=>{
+                        if (err) {
+                            return callBack(err)
+                        }
+                        console.log(res)
+
+                        // transporter.sendMail(mailOptions, function(error, info){
+                        //     if (error) {
+                        //       console.log(error);
+                        //     } else {
+                        //       console.log('Email sent: ' + info.response);
+                        //     }
+                        //   });
+
+                    })
+
                     let unJJ = data.detalleCompra.replace(/'/g,'"')
                     let unJson = JSON.parse(unJJ)
                    
