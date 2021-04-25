@@ -2,20 +2,20 @@ const pool = require  ('../../database.js')
 const fs = require ('fs');
 var nodemailer = require('nodemailer');
 
-// var transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     user: 'llanquihuen@gmail.com',
-//     pass: 'NCKxp1180i!!'
-//   }
-// });
+var transporter = nodemailer.createTransport({
+  service: 'sakuranboshodo.cl',
+  auth: {
+    user: 'contacto@sakuranboshodo.cl',
+    pass: 'aurevoirCSS1.'
+  }
+});
 
-// var mailOptions = {
-//     from: 'saku@sakuranbo.com',
-//     to: 'llanquihuen@gmail.com',
-//     subject: 'Sending Email using Node.js',
-//     text: 'That was easy!'
-//   };
+var mailOptions = {
+    from: 'saku@sakuranbo.com',
+    to: 'llanquihuen@gmail.com',
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+  };
 
 const tabla = 'compras'
 const handleProducto = {
@@ -42,13 +42,13 @@ const handleProducto = {
                         }
                         console.log(res)
 
-                        // transporter.sendMail(mailOptions, function(error, info){
-                        //     if (error) {
-                        //       console.log(error);
-                        //     } else {
-                        //       console.log('Email sent: ' + info.response);
-                        //     }
-                        //   });
+                        transporter.sendMail(mailOptions, function(error, info){
+                            if (error) {
+                              console.log(error);
+                            } else {
+                              console.log('Email sent: ' + info.response);
+                            }
+                          });
 
                     })
 

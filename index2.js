@@ -9,6 +9,9 @@ const porthttp = 3003
 
 
 const productRoutes = require ('./api/routes/productos_routecopy.js');
+const clientesRoutes = require ('./api/routes/clientes_route.js');
+const comprasRoutes = require ('./api/routes/compras_route.js');
+
 const imagesRoutes = require ('./api/routes/images_route.js');
 const authRoutes = require ('./api/routes/auth_route.js');
 const authToken = require ('./api/middle/authToken.js');
@@ -44,6 +47,8 @@ app.use(authToken)
 app.use('/test4/uploads', express.static('uploads'));
 app.use('/test4/thumb', express.static('thumb'));
 app.use('/test4/products', productRoutes)
+app.use('/test4/clientes',clientesRoutes)
+app.use('/test4/compras',comprasRoutes)
 app.use('/test4/images', imagesRoutes)
 app.use('/test4/auth',authRoutes)
 
