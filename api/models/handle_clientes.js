@@ -17,32 +17,34 @@ const handleProducto = {
                     data.telefono,
                 ],
                 (error, results, fields)=>{
-                    if (error.code==="ER_DUP_ENTRY"){
-                        pool.query(
-                            `UPDATE ${tabla} SET 
-                            ${'nombre="'+data.nombre+'"'},
-                            ${'region="'+data.region+'"'},
-                            ${'comuna="'+data.comuna+'"'},
-                            ${'direccion="'+data.direccion+'"'},
-                            ${'email="'+data.email+'"'}, 
-                            ${'telefono="'+data.telefono+'"'} WHERE rut ="${data.rut}"`,
-                
-                            (error,results)=>{
-                                console.log(JSON.stringify(results)+" handle CLIENTES update")
-                                if(error){
-                                    console.log(error)
-                                    // return callBack(error);
-                                }else{
+                    if(error){
+                        if (error.code==="ER_DUP_ENTRY"){
+                            pool.query(
+                                `UPDATE ${tabla} SET 
+                                ${'nombre="'+data.nombre+'"'},
+                                ${'region="'+data.region+'"'},
+                                ${'comuna="'+data.comuna+'"'},
+                                ${'direccion="'+data.direccion+'"'},
+                                ${'email="'+data.email+'"'}, 
+                                ${'telefono="'+data.telefono+'"'} WHERE rut ="${data.rut}"`,
+                    
+                                (error,results)=>{
+                                    console.log(JSON.stringify(results)+" handle CLIENTES update")
+                                    if(error){
+                                        console.log(error)
+                                        // return callBack(error);
+                                    }else{
 
-                                    console.log("no hay error")
+                                        console.log("no hay error")
+                                    }
+
+                                    // return callBack(null,results)
+                            
                                 }
-
-                                // return callBack(null,results)
-                         
-                            }
-                        )
-                    }else{
-                        return callBack(error);
+                            )
+                        }else{
+                            return callBack(error);
+                        }
                     }
                     console.log (results)
                     return callBack(null, results);
