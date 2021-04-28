@@ -3,8 +3,8 @@ const fs = require ('fs');
 var nodemailer = require('nodemailer');
 
 let logStream = fs.createWriteStream('log.txt')
-let console = {}
-console.log = (obj) => {
+let consoles = {}
+consoles.log = (obj) => {
   var s = ''
   if (typeof obj === 'string')
     s = obj
@@ -36,7 +36,7 @@ var mailOptions = {
 const tabla = 'compras'
 const handleProducto = {
     create:(data,callBack) =>{
-        console.log(data)
+        consoles.log(data)
         // const detalleCompra = data.detalleCompra.toString();
 
         pool.query(
@@ -56,13 +56,13 @@ const handleProducto = {
                         if (err) {
                             return callBack(err)
                         }
-                        console.log(res)
+                        consoles.log(res)
 
                         transporter.sendMail(mailOptions, function(error, info){
                             if (error) {
-                              console.log('error mail'+error);
+                              consoles.log('error mail'+error);
                             } else {
-                              console.log('Email sent: ' + info.response);
+                              consoles.log('Email sent: ' + info.response);
                             }
                           });
 
