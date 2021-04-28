@@ -17,12 +17,16 @@ consoles.log = (obj) => {
 
 var transporter = nodemailer.createTransport({
   service: 'mail.sakuranboshodo.cl',
+  pool:true,
   port:465,
   secure:true,
   auth: {
     user: 'contacto@sakuranboshodo.cl',
-    pass: 'aurevoircss1.'
+    pass: process.env.MAIL_PASS,
   },
+  tls: {
+    rejectUnauthorized: false
+}
 
 });
 
@@ -56,7 +60,7 @@ const handleProducto = {
                         if (err) {
                             return callBack(err)
                         }
-                        consoles.log(res)
+                        console.log(res)
 
                         transporter.sendMail(mailOptions, function(error, info){
                             if (error) {
