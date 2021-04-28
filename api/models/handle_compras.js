@@ -2,27 +2,36 @@ const pool = require  ('../../database.js')
 const fs = require ('fs');
 var nodemailer = require('nodemailer');
 
-// var transporter = nodemailer.createTransport({
-//   service: 'mail.sakuranboshodo.cl',
-//   port:465,
-//   secure:true,
-//   logger: true,
-//   debug: true,
-//   auth: {
-//     user: 'contacto@sakuranboshodo.cl',
-//     pass: 'aurevoirCSS1.'
-//   },
-//   tls:{
-//     rejectUnAuthorized:true
-// }
-// });
+let logStream = fs.createWriteStream('log.txt')
+let console = {}
+console.log = (obj) => {
+  var s = ''
+  if (typeof obj === 'string')
+    s = obj
+  else
+    s = JSON.stringify(obj)
 
-// var mailOptions = {
-//     from: 'saku@sakuranbo.com',
-//     to: 'llanquihuen@gmail.com',
-//     subject: 'Sending Email using Node.js',
-//     text: 'That was easy!'
-//   };
+  s = `${s}'\n'`
+  logStream.write(s)
+}
+
+var transporter = nodemailer.createTransport({
+  service: 'mail.sakuranboshodo.cl',
+  port:465,
+  secure:true,
+  auth: {
+    user: 'contacto@sakuranboshodo.cl',
+    pass: 'aurevoircss1.'
+  },
+
+});
+
+var mailOptions = {
+    from: 'contacto@sakuranboshodo.cl',
+    to: 'llanquihuen@gmail.com',
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+  };
 
 const tabla = 'compras'
 const handleProducto = {
@@ -42,22 +51,22 @@ const handleProducto = {
                         return callBack(error);
                     }
                     
-                    // pool.query(`SELECT * FROM clientes WHERE rut='${data.idCliente}'`,
-                    //  (err,res)=>{
-                    //     if (err) {
-                    //         return callBack(err)
-                    //     }
-                    //     console.log(res)
+                    pool.query(`SELECT * FROM clientes WHERE rut='${data.idCliente}'`,
+                     (err,res)=>{
+                        if (err) {
+                            return callBack(err)
+                        }
+                        console.log(res)
 
-                    //     transporter.sendMail(mailOptions, function(error, info){
-                    //         if (error) {
-                    //           console.log(error);
-                    //         } else {
-                    //           console.log('Email sent: ' + info.response);
-                    //         }
-                    //       });
+                        transporter.sendMail(mailOptions, function(error, info){
+                            if (error) {
+                              console.log('error mail'+error);
+                            } else {
+                              console.log('Email sent: ' + info.response);
+                            }
+                          });
 
-                    // })
+                    })
 
                     let unJJ = data.detalleCompra.replace(/'/g,'"')
                     let unJson = JSON.parse(unJJ)

@@ -1,0 +1,5 @@
+{"detalleCompra":"[{'_id':1,'cantidad':1},{'_id':2,'cantidad':1},{'_id':18,'cantidad':1}]","idCliente":"11.111.111-1","direccion":"San Ikalsls 9929 Dpto 1222 Nuñoa Santiago"}'
+'{"detalleCompra":"[{'_id':1,'cantidad':1},{'_id':2,'cantidad':1},{'_id':18,'cantidad':1}]","idCliente":"16.130.338-0","direccion":"San Ikalsls 9929 Dpto 1222 Nuñoa Santiago"}'
+'[{"_id":26,"nombre":"Juan Perez","region":"Región del Libertador Gral. Bernardo O’Higgins","comuna":"Rancagua","direccion":"San Ikalsls 9929 Dpto 1234 Nuñoa Santiago","email":"llanquihuen@gmail.com","telefono":"+56983518918","rut":"16.130.338-0"}]'
+'error mailError: connect ECONNREFUSED 127.0.0.1:465'
+'
