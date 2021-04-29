@@ -3,9 +3,14 @@ const express = require('express');
 const http = require('http');
 // const fs = require('fs');
 const cors = require('cors');
+const path = require('path');
+
 // const bodyParser = require ('body-parser')
 // const port = 3002;
 const porthttp = 5000
+
+// //Loads the handlebars module
+// const handlebars = require('express-handlebars');
 
 
 const productRoutes = require ('./api/routes/productos_routecopy.js');
@@ -25,13 +30,28 @@ const authToken = require ('./api/middle/authToken.js');
 
 app = express()
 
+// //-----VER EL HANDLEBAR DEL MAIL------
+// //Sets our app to use the handlebars engine
+// app.set('view engine', 'handlebars');
+// //Sets handlebars configurations (we will go through them later on)
+// app.engine('handlebars', handlebars({
+// layoutsDir: __dirname + '/views',
+// }));
+// app.use(express.static('public'))
+// app.get('/', (req, res) => {
+// //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+// res.render('main', {
+//     name:"pedrito"
+// });
+// });
+
+
 // var server = https.createServer(options, app);
 //var serverhttp = http.createServer(app)
 
 // server.listen(port, () => {
     // console.log("Server starting on port : " + port)
 // });
-
 //serverhttp.listen(porthttp, ()=>{console.log("Servidor corriendo en el puerto " + porthttp)})
 app.listen(porthttp, ()=>{console.log("Servidor corriendo en el puerto " + porthttp)})
 
@@ -47,6 +67,12 @@ app.use('/compras',comprasRoutes)
 app.use('/images', imagesRoutes)
 app.use('/auth',authRoutes)
 
+// Ver una página 
+// app.get('/preview',(req,res)=>{
+//     res.sendFile(path.join(__dirname+'/test.html'));
+//   });
+
 app.get('/', (req, res) => {
-   res.send('Now using https on port '+port);
+   res.send('Now using https on port '+porthttp);
 });
+
