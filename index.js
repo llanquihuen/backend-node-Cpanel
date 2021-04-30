@@ -10,7 +10,7 @@ const path = require('path');
 const porthttp = 5000
 
 // //Loads the handlebars module
-// const handlebars = require('express-handlebars');
+const handlebars = require('express-handlebars');
 
 
 const productRoutes = require ('./api/routes/productos_routecopy.js');
@@ -30,20 +30,24 @@ const authToken = require ('./api/middle/authToken.js');
 
 app = express()
 
+let unJson = JSON.parse(`[{"_id":19,"name":"Otro producto color Rojo","price":8000,"stock":53,"tag":"Rojo,caligrafia","descrip":"lalsladsl dla lladsl dsl dlsa sdnkahsbd uaysd b "},{"_id":20,"name":"ssss","price":213,"stock":170,"tag":"qas,da,da,dsa","descrip":" asdasd a sda sda das"}]`)
 // //-----VER EL HANDLEBAR DEL MAIL------
-// //Sets our app to use the handlebars engine
-// app.set('view engine', 'handlebars');
-// //Sets handlebars configurations (we will go through them later on)
-// app.engine('handlebars', handlebars({
-// layoutsDir: __dirname + '/views',
-// }));
-// app.use(express.static('public'))
-// app.get('/', (req, res) => {
-// //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
-// res.render('main', {
-//     name:"pedrito"
-// });
-// });
+//Sets our app to use the handlebars engine
+app.set('view engine', 'handlebars');
+//Sets handlebars configurations (we will go through them later on)
+app.engine('handlebars', handlebars({
+layoutsDir: __dirname + '/views',
+}));
+app.use(express.static('public'))
+
+app.get('/', (req, res) => {
+//Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+res.render('main', {
+    name:"Pedrito", 
+    direccion:"Los Pedros #112",
+    uno:unJson
+});
+});
 
 
 // var server = https.createServer(options, app);

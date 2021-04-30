@@ -12,10 +12,11 @@
 <body style="width: 80%;">
     <h1 style="text-align: center;">Gracias {{name}}!!</h1>
     <h3 style="text-align: center;">Su pedido se entregará a {{direccion}} lo antes posible</h3>
-    <ul class="people_list">
-  {{#each json}}
-    <li>    {{@index}}:{{this}}</li>
-  {{/each}}
+<ul>
+{{#each uno}}
+    <li>{{ this.name }}</li>
+{{/each}}
 </ul>
+
 </body>
 </html>

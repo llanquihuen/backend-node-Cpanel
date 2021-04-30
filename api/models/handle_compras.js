@@ -84,6 +84,21 @@ const handleProducto = {
                                 
                                 console.log(resu)
                                 console.log(res)
+                                // console.log(unJJ1)
+                                // console.log(unJson1)
+
+                                // var mailOptions = {
+                                //     from: 'contacto@sakuranboshodo.cl',
+                                //     to: res[0].email,
+                                //     subject: 'Comprobante de compra sakuranbo.shodo',
+                                //     text: 'That was easy!',
+                                //     template:'main',
+                                //     context:{
+                                //         name:res[0].nombre,
+                                //         direccion:res[0].direccion,
+                                //         order:resu,
+                                //     }
+                                // };
 
 
 
@@ -98,17 +113,6 @@ const handleProducto = {
                         // console.log(unJson1.length)
                         // console.log(res[0].email)
 
-                    // var mailOptions = {
-                    //     from: 'contacto@sakuranboshodo.cl',
-                    //     to: res[0].email,
-                    //     subject: 'Comprobante de compra sakuranbo.shodo',
-                    //     text: 'That was easy!',
-                    //     template:'main',
-                    //     context:{
-                    //         name:res[0].nombre,
-                    //         direccion:res[0].direccion
-                    //     }
-                    // };
 
                     //     transporter.sendMail(mailOptions, function(error, info){
                     //         if (error) {
