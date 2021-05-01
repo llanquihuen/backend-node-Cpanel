@@ -5,18 +5,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        *{
+            font-family: 'Quicksand', sans-serif;
+        }
+        body{
+margin:0; padding:0
+        }
         
+        header{
+            display:flex;
+            flex-direction: column;
+            font-size:calc(15px + 6 * ((80vw - 720px) / 680));
+            align-items:center;
+            justify-content:center;
+            background:#ffe3e3;
+            border-bottom: #faa 5px solid;
+            background-image: url('https://pngimg.com/uploads/sakura/sakura_PNG37.png');
+              text-shadow: 1px 1px #fff;
+
+        }
+
+        .logo{
+            height: 150px;
+            width: auto;
+        }
+        .saludo{
+            text-align: center;
+            font-size:calc(25px + 4 * ((80vw - 320px) / 680));
+
+            font-weight: 500;
+            color:rgb(56, 8, 17);
+            margin:0 5%;
+        }
+        .saludo2{
+            text-align: center;
+            font-size:calc(20px + 4 * ((80vw - 320px) / 680));
+
+            font-weight: 500;
+            color:rgb(56, 8, 17);
+            margin:20px 5%;
+        }
+        .relleno{
+            padding: 20px;
+            margin-left: 10%;
+
+        }
+        p{
+            font-size:calc(20px + 4 * ((80vw - 320px) / 680));
+ 
+        }
     </style>
-    <title>Pagina de Prueba</title>
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+
+<title>Pagina de Prueba</title>
 </head>
-<body style="width: 80%;">
-    <h1 style="text-align: center;">Gracias {{name}}!!</h1>
-    <h3 style="text-align: center;">Su pedido se entregará a {{direccion}} lo antes posible</h3>
-<ul>
-{{#each uno}}
-    <li>{{ this.name }}</li>
-{{/each}}
-</ul>
+<body>
+   
+    <header>
+        <img class="logo" src="https://www.sakuranboshodo.cl/store2/static/media/logo.0d4618ca.png" alt="logo">
+        <h1 style="font-weight: 400;">SAKURANBO.SHODO_STORE</h1>
+    </header> 
+    <div style="background-color: #eee;border-bottom: #faa 5px solid;">
+        <div style="border-bottom: #faa 1px solid;padding-bottom:10px;background:white ">
+        <h1 class="saludo" style="padding-top:30px;">Gracias {{name}} por tu compra!!</h1>
+        <h2 class="saludo2">Su pedido se entregará lo antes posible a:<br>{{direccion}}</h2>
+        </div>
+        <div class="relleno">
+            <p style="margin:0;">Detalle de la compra :</p>
+            <ul>    
+                {{#each uno}}
+            <li style="margin: 10px 0;">{{ this.name }}</li>
+                {{/each}}
+            </ul>
+            <p>Valor: $5000</p>
+            
+        </div>
+    </div>
+<p class="saludo2">Cualquier consulta envia un mensaje a 
+<a href="https://www.instagram.com/sakuranbo.shodo_store/">sakuranbo.shodo_store</a>
+ </p>
 
 </body>
 </html>

@@ -81,11 +81,16 @@ const handleProducto = {
                                 }
 
                                 //ACA SE TIENEN TODOS LOS DATOS :D
-                                
+                                let prices=0;
+                                for (i in resu){
+                                    prices=prices+(resu[i].price*unJson1[i].cantidad)
+                                }
+                                console.log(prices)
+                                console.log(data)
                                 console.log(resu)
-                                console.log(res)
-                                // console.log(unJJ1)
-                                // console.log(unJson1)
+                                console.log(res,"res")
+                                console.log(unJJ1)
+                                console.log(unJson1)
 
                                 // var mailOptions = {
                                 //     from: 'contacto@sakuranboshodo.cl',
@@ -97,9 +102,21 @@ const handleProducto = {
                                 //         name:res[0].nombre,
                                 //         direccion:res[0].direccion,
                                 //         order:resu,
+                                //         price:prices,
                                 //     }
                                 // };
 
+                                // transporter.sendMail(mailOptions, function(error, info){
+                                //     if (error) {
+                                //     //   consoles.log('error mail'+error);
+                                //         console.log('error mail'+ error);
+        
+                                //     } else {
+                                //     //   consoles.log('Email sent: ' + info.response);
+                                //         console.log('Email sent: ' + info.response);
+        
+                                //     }
+                                //     });
 
 
 
@@ -114,17 +131,6 @@ const handleProducto = {
                         // console.log(res[0].email)
 
 
-                    //     transporter.sendMail(mailOptions, function(error, info){
-                    //         if (error) {
-                    //         //   consoles.log('error mail'+error);
-                    //           console.log('error mail'+ error);
-
-                    //         } else {
-                    //         //   consoles.log('Email sent: ' + info.response);
-                    //           console.log('Email sent: ' + info.response);
-
-                    //         }
-                    //       });
 
                     })
 
