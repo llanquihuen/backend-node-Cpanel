@@ -85,38 +85,38 @@ const handleProducto = {
                                 for (i in resu){
                                     prices=prices+(resu[i].price*unJson1[i].cantidad)
                                 }
-                                console.log(prices)
-                                console.log(data)
-                                console.log(resu)
-                                console.log(res,"res")
-                                console.log(unJJ1)
-                                console.log(unJson1)
+                                // console.log(prices)
+                                // console.log(data)
+                                // console.log(resu)
+                                // console.log(res,"res")
+                                // console.log(unJJ1)
+                                // console.log(unJson1)
 
-                                // var mailOptions = {
-                                //     from: 'contacto@sakuranboshodo.cl',
-                                //     to: res[0].email,
-                                //     subject: 'Comprobante de compra sakuranbo.shodo',
-                                //     text: 'That was easy!',
-                                //     template:'main',
-                                //     context:{
-                                //         name:res[0].nombre,
-                                //         direccion:res[0].direccion,
-                                //         order:resu,
-                                //         price:prices,
-                                //     }
-                                // };
+                                var mailOptions = {
+                                    from: 'contacto@sakuranboshodo.cl',
+                                    to: res[0].email,
+                                    subject: 'Comprobante de compra sakuranbo.shodo',
+                                    text: 'That was easy!',
+                                    template:'main',
+                                    context:{
+                                        name:res[0].nombre,
+                                        direccion:res[0].direccion,
+                                        order:resu,
+                                        price:prices,
+                                    }
+                                };
 
-                                // transporter.sendMail(mailOptions, function(error, info){
-                                //     if (error) {
-                                //     //   consoles.log('error mail'+error);
-                                //         console.log('error mail'+ error);
+                                transporter.sendMail(mailOptions, function(error, info){
+                                    if (error) {
+                                    //   consoles.log('error mail'+error);
+                                        console.log('error mail'+ error);
         
-                                //     } else {
-                                //     //   consoles.log('Email sent: ' + info.response);
-                                //         console.log('Email sent: ' + info.response);
+                                    } else {
+                                    //   consoles.log('Email sent: ' + info.response);
+                                        console.log('Email sent: ' + info.response);
         
-                                //     }
-                                //     });
+                                    }
+                                    });
 
 
 
