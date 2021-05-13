@@ -31,15 +31,21 @@ const authToken = (req,res,next)=>{
             if(req.method == 'GET'){
                 // console.log('get si',req.path)
                 // console.log(req.path.includes('clientes'))
-                if(req.path.includes('clientes') || req.path.includes('compras')){
-                    
-                    let token = req.headers.authorization.split(' ')[1]  //Esto lo pasé a actions (api) para el cliente. 
-                    jwt.verify(token,process.env.SECRET_TOKEN, (error, decoded)=>{
-                        if(decoded.role == 'un_rol'){console.log("acceso");next();}
-                        else res.status(500).send({message:'No tienes los permisos suficientes,usuario no es admin',error});
-                    });
 
-                    res.status(401).send({message:'No tienes permisos para obtener esos datos'})
+                if(req.path.includes('clientes') || req.path.includes('compras')){
+                    if(req.headers.authorization && req.headers.authorization !== 'null'){
+                        let token = req.headers.authorization.split(' ')[1]  //Esto lo pasé a actions (api) para el cliente. 
+                        jwt.verify(token,process.env.SECRET_TOKEN, (error, decoded)=>{
+                            try{
+                                if(decoded.role == 'un_rol'){console.log("acceso");next();}
+                                else res.status(500).send({message:'No tienes los permisos suficientes,usuario no es admin',error});
+                            }catch{
+                            console.log('No es administrador')
+                            }
+                        })
+                    }else{
+                        res.status(401).send({message:'No tienes permisos para obtener esos datos'})
+                    }
                 }else{
                     next()
                 }
