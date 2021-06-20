@@ -51,9 +51,10 @@ const handleProducto = {
                     // console.log(array2)
                     let difference =  array1.filter(x=> !array2.includes(x))
                     difference.map((photo)=>{
-                    console.log("Eliminando el archivo "+photo)
+                        //dar vuelta el backslash
+                        console.log(`Eliminando el archivo uploads/${photo.substring(8)}`)
                         try{
-                            fs.unlinkSync(photo)
+                            fs.unlinkSync(`uploads/${photo.substring(8)}`)
                         }catch{
                         console.log("El archivo no existe")
                         };
@@ -97,10 +98,10 @@ const handleProducto = {
         if(post.tag) {post.tag = post.tag.toString()}
         if(post.imageLocation) {post.imageLocation = post.imageLocation.toString()}else{post.imageLocation=" "}
 
-        console.log(post.imageLocation+"------------------------------------------------------------------------------------")
+        console.log(post.imageLocation)
 
         let post2 = post.imageLocation.replace(/\\/g, "\\\\")
-        console.log(post2+"------------------------------------------------------------------------------------")
+        console.log(post2)
 
         pool.query(
             `UPDATE ${tabla} SET ${'name="'+post.name+'"'},

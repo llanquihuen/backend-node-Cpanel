@@ -3,7 +3,7 @@ const tabla = 'imagenes'
 const handleImagen = {
     create:(path,callBack) =>{
         path = path.toString();
-        // console.log(path +" create---------------")
+        // console.log(path+"6.handle_images")
         pool.query(
             `INSERT INTO ${tabla} (productImage) VALUES ('${path}')`,
                 
@@ -26,7 +26,7 @@ const handleImagen = {
                 let unJson = JSON.parse(JSON.stringify(results))
                 for(let i in unJson){
                     unJson[i].productImage = unJson[i].productImage.split(/\s*(?:,|$)\s*/)
-                    // console.log(JSON.stringify(unJson)+" image view2-----------------")
+                    // console.log(JSON.stringify(unJson)+"29-handle_images")
 
                 }
                 
@@ -44,7 +44,7 @@ const handleImagen = {
                 let unJson = JSON.parse(JSON.stringify(results))
                 for(let i in unJson){
                     unJson[i].productImage = unJson[i].productImage.split(/\s*(?:,|$)\s*/)
-                    // console.log(JSON.stringify(unJson)+" image view2-----------------")
+                    // console.log(JSON.stringify(unJson)+"47.handle_images")
                 }
                 
                 return callBack(null,unJson)
@@ -56,7 +56,7 @@ const handleImagen = {
     update:(id,post,callBack)=>{
         if(post.tag) post.tag = post.tag.toString();
         if(post.imageLocation) post.imageLocation = post.imageLocation.toString()
-        // console.log(post.imageLocation +"image update---------------")
+        // console.log(post.imageLocation +"59.handle_images")
         pool.query(`UPDATE ${tabla} SET imageLocation='${post.imageLocation}' WHERE _id ='${id}'`,
 
             (error,results)=>{

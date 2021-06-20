@@ -51,7 +51,7 @@ router.patch("/:id", async (req, res) => {
   const theId = req.params.id
   const post = req.body
   const lalala = JSON.parse(JSON.stringify(post))
-  console.log(theId,post, lalala +"------------jiji-----")
+  console.log(theId,post, lalala+"54-routecopy")
   handleProducto.update(theId,post,(err, result)=>{
     if (err) {
       res.status(500).json({message:error.message})
